@@ -38,9 +38,11 @@ public class Hotel_Reservation_system {
             day_index_end = date.indexOf(")", day_index_end + 1);
 
             if (day_index_start != -1) {
-                cost_lake += lake.getRegularWeekDay();
-                cost_bridge += bridge.getRegularWeekDay();
-                cost_ridge += ridge.getRegularWeekDay();
+                String day = date.substring(day_index_start + 1, day_index_end);
+
+                cost_lake += lake.getRegularWeekDay()+lake.getRegularWeekEnd();
+                cost_bridge += bridge.getRegularWeekDay()+bridge.getRegularWeekEnd();
+                cost_ridge += ridge.getRegularWeekDay()+ridge.getRegularWeekEnd();
 
             }
         }
@@ -55,7 +57,7 @@ public class Hotel_Reservation_system {
 
     //implementing the min method
     public static  String min(int a, int b, int c) {
-        if(a < c && a < b) {
+        if(a < c && a < c) {
             return lake.getHotelName();
         }else if(b<a && b < c) {
             return bridge.getHotelName();
@@ -71,4 +73,5 @@ public class Hotel_Reservation_system {
         }
     }
 }
+
 
