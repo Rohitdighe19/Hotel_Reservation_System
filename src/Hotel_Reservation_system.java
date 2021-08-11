@@ -12,19 +12,24 @@ public class Hotel_Reservation_system {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         String date = bf.readLine();
 
+
         //setting values for lakewood
         lake = new Hotel("Lakewood");
-        lake.setRegularWeekDay(210);
+        lake.setRegularWeekDay(110);
+        lake.setRegularWeekEnd(90);
 
         //setting values for bridgewood
         bridge = new Hotel("Bridgewood");
-        bridge.setRegularWeekDay(360);
+        bridge.setRegularWeekDay(150);
+        bridge.setRegularWeekEnd(50);
 
         //setting values for ridgewood
         ridge = new Hotel("Ridgewood");
-        ridge.setRegularWeekDay(260);
+        ridge.setRegularWeekDay(220);
+        ridge.setRegularWeekEnd(150);
 
-
+        //int index = date.indexOf(":");
+        //String type = date.substring(0, index);
         int cost_lake = 0, cost_bridge = 0, cost_ridge = 0;
         int day_index_start = 0, day_index_end = 0;
 
@@ -36,6 +41,7 @@ public class Hotel_Reservation_system {
                 cost_lake += lake.getRegularWeekDay();
                 cost_bridge += bridge.getRegularWeekDay();
                 cost_ridge += ridge.getRegularWeekDay();
+
             }
         }
 
@@ -47,23 +53,22 @@ public class Hotel_Reservation_system {
         System.out.println("Cheapest price is of "+result);
     }
 
-    private static String min(int a, int b, int c) {
-        if (a < b && a < c) {
+    //implementing the min method
+    public static  String min(int a, int b, int c) {
+        if(a < c && a < b) {
             return lake.getHotelName();
-        } else if (b < a && b < c) {
+        }else if(b<a && b < c) {
             return bridge.getHotelName();
-        } else if (c < a && c < b) {
+        }else if(a==b ) {
+            return (lake.getHotelName()+" "+bridge.getHotelName());
+        }else if(b==c) {
+            return (bridge.getHotelName()+" "+ridge.getHotelName());
+        }else if(a==c) {
+            return (lake.getHotelName()+" "+ridge.getHotelName());
+        }
+        else {
             return ridge.getHotelName();
-        } else if (a == b || b == c) {
-            return bridge.getHotelName();
-        } else if (c == a) {
-            return ridge.getHotelName();
-        } else {
-            return lake.getHotelName();
         }
     }
 }
- 
-
-
 
